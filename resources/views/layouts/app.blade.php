@@ -8,12 +8,8 @@
 
     {{-- estilos globais --}}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root{ --brand:#04488c; --muted:#6b7280; }
-        body{ font-family:'Inter',system-ui,Arial; margin:0; background:#f4f4f9; color:#0b1730; }
-        /* ...coloque aqui estilos compartilhados (ou importe CSS separado) ... */
-    </style>
-
+   
+    @vite(['resources/css/app.scss','resources/js/app.js'])
     @stack('styles')
 </head>
 <body>

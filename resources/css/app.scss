@@ -1,0 +1,11 @@
+:root{
+  --bg-900:#071022;
+  --bg-800:#0b1730;
+  --accent-1:#4d7db9;
+  --accent-2:#2f3a8f;
+  --text:#e6eef8;
+}
+
+@import 'partials/welcome';
+@import 'partials/login';
+@import 'partials/dashboard';

@@ -1,0 +1,7 @@
+.agentes {
+  .table { width:100%; border-collapse: collapse; }
+  .table th, .table td { padding:8px; border-bottom:1px solid rgba(0,0,0,0.06); }
+  .btn { padding:6px 10px; background:var(--accent-1); color:var(--text); border-radius:4px; text-decoration:none; display:inline-block; }
+  .btn.secondary { background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.06); }
+  .errors { color:#f66; margin-bottom:8px; }
+}

@@ -61,11 +61,11 @@
           <div class="desc">Gerencie editais, crie formulários e acompanhe processos seletivos.</div>
         </a>
 
-        <div class="module disabled" role="listitem" aria-disabled="true">
-          <div class="ico">👥</div>
-          <div class="title">Agentes Culturais</div>
-          <div class="desc">Cadastro e gerenciamento de agentes culturais. <br><small style="color:var(--danger)">Em desenvolvimento</small></div>
-        </div>
+        <a class="module" href="{{ route('agentes.index') }}" role="listitem">
+            <div class="ico">👥</div>
+            <div class="title">Agentes Culturais</div>
+            <div class="desc">Cadastro e gerenciamento de agentes culturais.</div>
+        </a>
 
         <div class="module disabled" role="listitem" aria-disabled="true">
           <div class="ico">📝</div>

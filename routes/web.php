@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditalController;
+use App\Http\Controllers\AgenteCulturalController;
 
 Route::middleware('web')->group(function (){ 
     Route::get('/', function () {
@@ -27,6 +28,7 @@ Route::middleware('web')->group(function (){
     // Rotas dos Editais (protegidas por autenticação)
     Route::middleware('auth')->group(function () {
         Route::resource('editais', EditalController::class);
+        Route::resource('agentes', AgenteCulturalController::class)->middleware('auth');
     });
 
     Route::post('/logout', function (Request $request) {

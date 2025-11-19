@@ -3,6 +3,7 @@ name: Tests
 on:
   push:
     branches:
+      - main
       - master
       - '*.x'
   pull_request:
@@ -34,20 +35,43 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Cache Composer deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.composer/cache
+            vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Copy environment file
-        run: cp .env.example .env
+      - name: Prepare environment (sqlite)
+        run: |
+          cp .env.example .env
+          # use sqlite file for predictable CI DB
+          echo "DB_CONNECTION=sqlite" >> .env
+          echo "DB_DATABASE=./database/database.sqlite" >> .env
+          mkdir -p database
+          touch database/database.sqlite
+          php artisan key:generate --ansi
 
-      - name: Generate app key
-        run: php artisan key:generate
+      - name: Run migrations
+        run: php artisan migrate --force
 
       - name: Execute tests
-        run: php artisan test
+        run: php artisan test --verbose
 
       - name: Install Node dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build assets
-        run: npm run build
+        run: npm run build --if-present

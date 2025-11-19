@@ -1,3 +1,10 @@
+/* usar módulos Sass (as * emula @import) */
+@use 'partials/base' as *;
+@use 'partials/welcome' as *;
+@use 'partials/login' as *;
+@use 'partials/dashboard' as *;
+@use 'partials/agentes' as *;
+
 :root{
   --bg-900:#071022;
   --bg-800:#0b1730;
@@ -5,9 +12,3 @@
   --accent-2:#2f3a8f;
   --text:#e6eef8;
 }
-
-@import 'partials/base';
-@import 'partials/welcome';
-@import 'partials/login';
-@import 'partials/dashboard';
-@import 'partials/agentes';

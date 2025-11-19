@@ -17,7 +17,10 @@ class EditalController extends Controller
      */
     public function index()
     {
-        $editais = Edital::with(['formularios.perguntas.alternativas'])->orderBy('created_at', 'desc')->get();
+       $editais = \App\Models\Edital::with(['formularios'])
+        ->orderBy('created_at', 'desc')
+        ->paginate(15);
+
         return view('editais.index', compact('editais'));
     }
 

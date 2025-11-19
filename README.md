@@ -103,8 +103,6 @@ Criar o arquivo sqlite:
 mkdir -p database
 # PowerShell
 type nul > database\database.sqlite
-# ou Linux/WSL
-# touch database/database.sqlite
 ```
 
 5. Compilar assets
@@ -127,8 +125,10 @@ php artisan serve
 ## Testes
 Rodar testes automatizados:
 ```bash
-php artisan test --verbose
+php artisan test
 ```
+
+
 No CI, o workflow usa SQLite em arquivo e executa migrations antes dos testes.
 
 ## CI (GitHub Actions)

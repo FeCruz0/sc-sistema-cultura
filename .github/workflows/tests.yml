@@ -68,7 +68,7 @@ jobs:
         run: php artisan migrate --force
 
       - name: Execute tests
-        run: php artisan test --verbose
+        run: php artisan test
 
       - name: Install Node dependencies
         run: npm ci

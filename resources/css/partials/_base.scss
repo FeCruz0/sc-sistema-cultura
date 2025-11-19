@@ -45,7 +45,7 @@ a:hover { text-decoration: underline; }
   transition: transform .12s ease, box-shadow .12s ease, opacity .08s;
   box-shadow: 0 6px 18px rgba(10,25,50,0.22);
 }
-.btn:hover { transform: translateY(-2px); }
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
 .btn.ghost,
 .btn.secondary {
   background: transparent;
@@ -132,23 +132,40 @@ textarea { min-height: 120px; resize: vertical; }
 .pagination { display:flex; gap:8px; list-style:none; padding:0; margin-top:12px; }
 
 /* campos de formulários dentro do painel/agentes: texto escuro e fundo claro */
+.card .form-control,
+.card input,
+.card textarea,
+.card select,
+form .form-control,
+form input,
+form textarea,
+form select,
 .agentes .card input,
 .agentes .card textarea,
 .agentes .card select,
 form.agente-form input,
 form.agente-form textarea,
-form.agente-form select {
-  color: #0b1220;                    /* texto escuro */
-  background: #f7f8fb;              /* fundo claro (ajuste se preferir) */
+form.agente-form select,
+.editais .form-control,
+.editais input,
+.editais textarea,
+.editais select {
+  background: #ffffff !important;
+  color: #0b1220 !important;            /* texto escuro */
   border: 1px solid rgba(2,6,20,0.06);
 }
 
 /* placeholder */
+.card input::placeholder,
+.card textarea::placeholder,
+form input::placeholder,
+form textarea::placeholder,
 .agentes .card input::placeholder,
 .agentes .card textarea::placeholder,
+.editais .form-control::placeholder,
 form.agente-form input::placeholder,
 form.agente-form textarea::placeholder {
-  color: rgba(11,18,34,0.45);
+  color: rgba(11,18,34,0.45) !important;
 }
 
 /* foco */
@@ -179,4 +196,15 @@ form.agente-form textarea::placeholder {
   .container, .wrap { padding:12px; }
   .table thead { display:none; }
   .table tbody td { display:block; width:100%; box-sizing:border-box; padding:10px 12px; }
+}
+
+.editais {
+  .form-container { max-width: 1100px; margin: 0 auto; }
+  .form-row { gap:12px; }
+  .formularios-section { margin-top:6px; }
+  .formulario-item { padding:12px; margin-bottom:12px; border-radius:10px; }
+  .pergunta-item { padding:10px; margin-bottom:10px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
+  .alternativa-item .form-control { width:100%; }
+  .hidden { display:none !important; }
+  .error-list { margin:8px 0 0 0; padding-left:16px; color:var(--danger); }
 }

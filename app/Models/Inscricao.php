@@ -12,8 +12,14 @@ class Inscricao extends Model
     protected $table = 'inscricaos';
 
     protected $fillable = [
-        'id_agente',
-        'id_edital',
+        'edital_id',
+        'user_id',
+        'resposta',
+        'status',
+    ];
+
+    protected $casts = [
+        'resposta' => 'array',
     ];
 
     /**
@@ -27,9 +33,14 @@ class Inscricao extends Model
     /**
      * Relacionamento com Edital
      */
-    public function edital()
+    public function edital(): BelongsTo
     {
-        return $this->belongsTo(Edital::class, 'id_edital');
+        return $this->belongsTo(Edital::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

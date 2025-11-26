@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditalController;
 use App\Http\Controllers\AgenteController;
+use App\Http\Controllers\InscricaoController;
 
 Route::middleware('web')->group(function (){ 
     Route::get('/', function () {
@@ -19,16 +20,16 @@ Route::middleware('web')->group(function (){
 
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-    // Route::get('/dashboard', function (){
-    //     return 'Logado!';
-    // })->middleware('auth');
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
     // Rotas dos Editais (protegidas por autenticação)
     Route::middleware('auth')->group(function () {
         Route::resource('editais', EditalController::class);
         Route::resource('agentes', AgenteController::class)->middleware('auth');
+
+        Route::post('editais/{edital}/inscricoes', [InscricaoController::class, 'store'])->name('editais.inscricoes.store');
+
+        Route::get('editais/{edital}/inscricoes', [InscricaoController::class, 'index'])->name('editais.inscricoes.index'); // view admin
     });
 
     Route::post('/logout', function (Request $request) {

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'curriculo_aprovado', // <-- adicionado
     ];
 
     /**
@@ -35,18 +35,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'curriculo_aprovado' => 'boolean',
+    ];
 
     /**
      * Relacionamento com Agente Cultural
@@ -54,5 +47,16 @@ class User extends Authenticatable
     public function agenteCultural()
     {
         return $this->hasOne(AgenteCultural::class, 'user_id');
+    }
+
+    public function inscricoes()
+    {
+        return $this->hasMany(\App\Models\Inscricao::class);
+    }
+
+    // helper simples usado nas policies (opcional)
+    public function hasRole(string $role): bool
+    {
+        return (string) $this->role === $role;
     }
 }

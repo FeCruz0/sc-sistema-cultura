@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('inscricoes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('edital_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')-constrained()->cascadeOnDelete();
-            $table->jason('resposta')->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->json('resposta')->nullable();
             $table->enum('status', ['pendente', 'aprovada', 'rejeitada'])->default('pendente');
             $table->timestamps();
             $table->unique(['edital_id','user_id']);

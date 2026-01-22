@@ -16,9 +16,9 @@ Route::middleware('web')->group(function (){
 
     Route::get('/login', function () {
         return view('login'); // login.blade.php
-    });
+    })->name('login');
 
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
